@@ -9,10 +9,10 @@
 #define MONITORCONTROL   //     1       0          controls DHW on/off and cooling/heating on/off (requires MONITOR to be defined)
 #define MONITORSERIAL    //     0       0          outputs raw hex data packets on serial (requires MONITOR to be defined)
 //#define JSON             //    14       0.2        generate JSON messages for serial or UDP
-//#define MQTTTOPICS       //    15       0.1        generate MQTT topics for serial or UDP
+#define MQTTTOPICS       //    15       0.1        generate MQTT topics for serial or UDP
 //#define OUTPUTUDP        //     6       0.2        transmit JSON and/or MQTT messages over UDP (requires JSON and/or MQTTTOPICS to be defined, tested on Mega+W5500 ethernet shield)
 #define OUTPUTSERIAL     //     0       0          outputs JSON and/or MQTT messages on serial (requires JSON and/or MQTTTOPICS to be defined)
-#define SAVEHISTORY      //     2       0.2-2.7    (data-size depends on product-dependent parameter choices) saves packet history enabling the use of "UnknownOnly" to output changed values only (no effect if JSON and MQTTTOPICS are not defined)
+//#define SAVEHISTORY      //     2       0.2-2.7    (data-size depends on product-dependent parameter choices) saves packet history enabling the use of "UnknownOnly" to output changed values only (no effect if JSON and MQTTTOPICS are not defined)
                          // --------------------
                          //    38       2          total (for all functions enabled, sketch too big)
 
@@ -44,12 +44,12 @@
 //      0x31 works on EHVX08S23D6V
 //      0x2F works on EHYHBX08AAV3	
 //      0x2D works on EHVX08S26CA9W	
-#define PARAM_HC_ONOFF 0x31
+#define PARAM_HC_ONOFF 0x2F
 
 // Parameter in packet type 35 for switching DHW on/off
 //      0x40 works on EHVX08S23D6V 	
 //      0x3E works on EHVX08S26CA9W
-#define PARAM_DHW_ONOFF 0x40
+#define PARAM_DHW_ONOFF 0x3E
 
 // Parameter in packet type 35 for switching DHWbooster on/off
 //      0x48 works on EHVX08S26CB9W
@@ -58,7 +58,7 @@
 #define CONTROL_ID_NONE 0x00  
 #define CONTROL_ID_0 0xF0     // first external controller
 #define CONTROL_ID_1 0xF1     // second external controller
-#define CONTROL_ID_DEFAULT CONTROL_ID_NONE   // will only work if no external controller is detected
+#define CONTROL_ID_DEFAULT CONTROL_ID_0   // will only work if no external controller is detected
 
 #define F030DELAY 100   // Time delay for external controller simulation, should be larger than any response of other external controllers (which is typically 25-80 ms)
 #define F03XDELAY  30   // Time delay for external controller simulation, should preferably be a bit larger than any regular response from external controllers (which is typically 25 ms)
